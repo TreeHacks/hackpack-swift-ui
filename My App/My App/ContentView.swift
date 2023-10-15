@@ -17,30 +17,33 @@ struct ContentView: View {
                         .foregroundStyle(.tint)
                     Text("Hello, world!")
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                .padding()
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+                    .padding()
+                
                 ZStack {
-                    Circle().fill(Color.blue).padding(50)
+                    Circle()
+                        .fill(Color.blue)
+                        .padding(50)
                     Text("Hello, world!")
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                .padding()
-                
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+                    .padding()
+                    
                 
                 Spacer()
                 
                 HStack{
-                    ButtonView(label: Text("Tap me!"),
-                               
-                               action: {
-                        print("Button tapped")
-                    }
+                    ButtonView(
+                        label: Text("Tap me!"),
+                        action: {
+                            print("Button tapped")
+                        }
                     )
                     
                     NavigationButtonView(
@@ -52,9 +55,8 @@ struct ContentView: View {
                         label: Text("Go to Network"),
                         destination: AnyView(NetworkingView())
                     )
-                }.padding(  
-                    .horizontal
-                )
+                }
+                .padding(.horizontal)
             }
         }
     }

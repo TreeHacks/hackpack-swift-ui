@@ -285,7 +285,9 @@ HStack {
 }
 
 ZStack {
-    Circle().fill(Color.blue).padding(50)
+    Circle()
+        .fill(Color.blue)
+        .padding(50)
     Text("Hello, world!")
 }
 ```
@@ -378,7 +380,9 @@ struct ContentView: View {
                     .padding()
                     
                 ZStack {
-                    Circle().fill(Color.blue).padding(50)
+                    Circle()
+                        .fill(Color.blue)
+                        .padding(50)
                     Text("Hello, world!")
                 }
                     .padding()
