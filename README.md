@@ -22,6 +22,31 @@ In this hackpack we will cover the basics of SwiftUI and create a simple iOS app
 
 ![](/hackpack-assets/new_project_2.png)
 
+4. Choose a location to save your project and click "Create". You should see a screen as shown below. On the right side of the screen, you should see a preview of your app. This is the default view that Xcode provides for you. You can click the play button on the top left of the screen to run your app in the simulator (or on your device if you have one connected).
+
+![](/hackpack-assets/new_project_3.png)
+
+### Overview of Xcode
+
+1. On the left side of the screen, you should see a file navigator. This is where you can view all of the files in your project and also create new files/folders. Above the folder tree, you should see a row of buttons that show you different properties of the project. For example, you can see all the breakpoints or monitor the memory usage of your app. 
+
+![](/hackpack-assets/folder_tree.png) ![](/hackpack-assets/performance.png)
+
+2. At the very top, you should see the current device Xcode would run your app on. You can click this to change the device. 
+
+![](/hackpack-assets/device.png)
+
+3. Github is integrated into Xcode. You can click the source control button on the top right of the screen to see all the changes you've made to your project. You can also commit and push your changes to Github from here.
+
+### Code Structure
+
+1. By default, you should see a file called `ContentView.swift`. This is the file that contains the code for the default view that Xcode provides for you. You can see the code for the view on the right side of the screen.
+
+2. `ContentView.swift` is called in `My_AppApp.swift`. This is the file that contains the code for the app itself. You can see the code for the app on the right side of the screen. For now, you can ignore this file.
+
+3. Let's go back to `ContentView.swift`. You'll notice that it's a struct that conforms to the `View` protocol. This means that it's a view. You can see the code for the view on the right side of the screen. The `body` property is a computed property that returns a `some View`. This means that the type of the view is unknown, but it conforms to the `View` protocol. The `some` keyword is used to hide the type of the view. You can read more about opaque return types [here](https://docs.swift.org/swift-book/LanguageGuide/OpaqueTypes.html).
+
+
 ### Uploading to the App Store
 
 # Congratulations! 🎉
