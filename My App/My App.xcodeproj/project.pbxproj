@@ -16,6 +16,7 @@
 		AB5C9B6F2ADBE02F00A358EC /* My_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5C9B6E2ADBE02F00A358EC /* My_AppUITestsLaunchTests.swift */; };
 		AB5C9B7C2ADBE8AF00A358EC /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5C9B7B2ADBE8AF00A358EC /* ButtonView.swift */; };
 		AB5C9B802ADBF38700A358EC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5C9B7F2ADBF38700A358EC /* ListView.swift */; };
+		AB5C9B822ADBF7B100A358EC /* NetworkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5C9B812ADBF7B100A358EC /* NetworkingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		AB5C9B6E2ADBE02F00A358EC /* My_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB5C9B7B2ADBE8AF00A358EC /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		AB5C9B7F2ADBF38700A358EC /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListView.swift; path = "My App/ListView.swift"; sourceTree = SOURCE_ROOT; };
+		AB5C9B812ADBF7B100A358EC /* NetworkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				AB5C9B572ADBE02F00A358EC /* Preview Content */,
 				AB5C9B7B2ADBE8AF00A358EC /* ButtonView.swift */,
 				AB5C9B7F2ADBF38700A358EC /* ListView.swift */,
+				AB5C9B812ADBF7B100A358EC /* NetworkingView.swift */,
 			);
 			path = "My App";
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5C9B822ADBF7B100A358EC /* NetworkingView.swift in Sources */,
 				AB5C9B802ADBF38700A358EC /* ListView.swift in Sources */,
 				AB5C9B542ADBE02E00A358EC /* ContentView.swift in Sources */,
 				AB5C9B522ADBE02E00A358EC /* My_AppApp.swift in Sources */,

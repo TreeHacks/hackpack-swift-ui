@@ -178,7 +178,104 @@ NavigationView {
 
 ![](/hackpack-assets/navigation.gif)
 
-### Uploading to the App Store
+### Networking
+
+1. Let's create a new screen that displays a list of items from an API. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "NetworkingView.swift" as the file name and click "Create". You should see a new file called `NetworkingView.swift` in the folder tree.
+
+2. In `NetworkingView.swift`, let's call the [JSON Placeholder API](https://jsonplaceholder.typicode.com/) to get a list of posts. Add the following shown below. By creating a `@State var posts: [Post]` property, we can store the list of posts in the view. You can read more about state [here](<https://developer.apple.com/documentation/swiftui/state>). 
+
+```swift
+import SwiftUI
+
+struct NetworkingView: View {
+    @State var posts: [Post] = []
+
+    var body: some View {
+        List(posts, id: \.id) { post in
+            VStack(alignment: .leading) {
+                Text(post.title)
+                    .font(.headline)
+                Text(post.body)
+                    .font(.subheadline)
+            }
+        }
+        .task {
+            do {
+                posts = try await fetchPosts()
+            } catch {
+                print(error)
+            }
+        }
+    }
+
+    func fetchPosts() async throws -> [Post] {
+        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode([Post].self, from: data)
+    }
+}
+
+struct Post: Codable, Identifiable {
+    let id: Int
+    let title: String
+    let body: String
+}
+```
+
+3. A task is a piece of code that runs asynchronously. You can read more about tasks [here](https://docs.swift.org/swift-book/LanguageGuide/Concurrency/ConcurrencyQuickTour.html#ID617). In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](https://developer.apple.com/documentation/swiftui/view/task(id:priority:)).
+
+4. A `Codable` type is a type that can be encoded and decoded from JSON. You can read more about it [here](https://developer.apple.com/documentation/swift/codable). We create a `Post` struct that conforms to the `Codable` protocol. We also make it conform to the `Identifiable` protocol so that we can use it in a `List`. You can read more about the `Identifiable` protocol [here](https://developer.apple.com/documentation/swiftui/identifiable).
+
+5. An `Identifiable` type is a type that has a stable identity. You can read more about it [here](https://developer.apple.com/documentation/swiftui/identifiable). We make the `id` property of the `Post` struct the stable identity.
+
+6. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `NavigationLink`. You can read more about it [here](https://developer.apple.com/documentation/swiftui/navigationlink).
+
+```swift
+NavigationView {
+    VStack {
+        Image(systemName: "globe")
+            .imageScale(.large)
+            .foregroundStyle(.tint)
+        Text("Hello, world!")
+        ButtonView(label: "Tap me!")
+        NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
+            Text("Go to list")
+        }
+        NavigationLink(destination: NetworkingView()) {
+            Text("Go to networking")
+        }
+    }
+    .padding()
+}
+```
+
+7. Here's what the app should look like now:
+
+![](/hackpack-assets/network.gif)
+
+### Styling
+
+1. Now that we've gotten some basic SwiftUI down, let's style the app. Go back to `ContentView.swift`. Add the following code to the `VStack`, under `NavigationLink`. You can read more about the `background` modifier [here](<https://developer.apple.com/documentation/swiftui/view/background(_:alignment:)>).
+
+```swift
+NavigationView {
+    VStack {
+        Image(systemName: "globe")
+            .imageScale(.large)
+            .foregroundStyle(.tint)
+        Text("Hello, world!")
+        ButtonView(label: "Tap me!")
+        NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
+            Text("Go to list")
+        }
+        NavigationLink(destination: NetworkingView()) {
+            Text("Go to networking")
+        }
+    }
+    .padding()
+    .background(Color(.systemBackground))
+}
+```
 
 # Congratulations! 🎉
 

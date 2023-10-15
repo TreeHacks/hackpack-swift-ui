@@ -19,6 +19,9 @@ struct ContentView: View {
                 NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
                     Text("Go to list")
                 }
+                NavigationLink(destination: NetworkingView()) {
+                    Text("Go to networking")
+                }
             }
             .padding()
         }
