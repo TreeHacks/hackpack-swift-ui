@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ButtonView: View {
+    var label: String
+
     var body: some View {
         Button(action: {
             print("Button tapped")
         }, label: {
-            Text("Tap me")
+            Text(label)
         })
     }
 }

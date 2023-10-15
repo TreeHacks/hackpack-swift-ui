@@ -93,17 +93,19 @@ struct ContentView: View {
 
 1. Let's add a new view to the project that creates a button. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "ButtonView.swift" as the file name and click "Create". You should see a new file called `ButtonView.swift` in the folder tree.
 
-2. In `ButtonView.swift`, add the following code:
+2. In `ButtonView.swift`, add the following shown below. By creating a `var label: String` property, we can pass in a label to the view. You can read more about properties [here](https://docs.swift.org/swift-book/LanguageGuide/Properties.html).
 
 ```swift
 import SwiftUI
 
 struct ButtonView: View {
+    var label: String
+
     var body: some View {
         Button(action: {
             print("Button tapped")
         }, label: {
-            Text("Tap me!")
+            Text(label)
         })
     }
 }
@@ -112,12 +114,69 @@ struct ButtonView: View {
 3. Go back to `ContentView.swift`. Add the following code to the `VStack`, under `Text`:
 
 ```swift
-ButtonView()
+ButtonView(label: "Tap me!")
 ```
 
 4. Click the play button on the top left of the screen to run your app in the simulator. You should see a button that says "Tap me!". When you tap the button, you should see "Button tapped" printed in the console (which is at the bottom of the screen).
 
 ![](/hackpack-assets/console.png)
+
+### Navigation
+
+1. Navigation is a way to navigate between different views. Let's add a navigation view to the app. Go back to `ContentView.swift`. Wrap the `VStack` in a `NavigationView`. You can read more about it [here](https://developer.apple.com/documentation/swiftui/navigationview).
+
+```swift
+NavigationView {
+    VStack {
+        Image(systemName: "globe")
+            .imageScale(.large)
+            .foregroundStyle(.tint)
+        Text("Hello, world!")
+        ButtonView(label: "Tap me!")
+    }
+    .padding()
+}
+```
+
+2. Let's create a new screen that displays a list of items. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "ListView.swift" as the file name and click "Create". You should see a new file called `ListView.swift` in the folder tree.
+
+3. In `ListView.swift`, add the following shown below. By creating a `var items: [String]` property, we can pass in a list of items to the view. You can read more about arrays [here](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#ID105). 
+
+```swift
+import SwiftUI
+
+struct ListView: View {
+    var items: [String]
+
+    var body: some View {
+        List(items, id: \.self) { item in
+            Text(item)
+        }
+    }
+}
+```
+
+4. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `ButtonView`. You can read more about it [here](https://developer.apple.com/documentation/swiftui/navigationlink).
+
+```swift
+NavigationView {
+    VStack {
+        Image(systemName: "globe")
+            .imageScale(.large)
+            .foregroundStyle(.tint)
+        Text("Hello, world!")
+        ButtonView(label: "Tap me!")
+        NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
+            Text("Go to list")
+        }
+    }
+    .padding()
+}
+```
+
+5. Here's what the app should look like now:
+
+![](/hackpack-assets/navigation.gif)
 
 ### Uploading to the App Store
 
