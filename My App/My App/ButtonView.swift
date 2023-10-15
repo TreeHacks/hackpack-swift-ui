@@ -9,12 +9,11 @@ import SwiftUI
 
 struct ButtonView: View {
     var label: String
+    var action: () -> Void = {}
 
     var body: some View {
-        Button(action: {
-            print("Button tapped")
-        }, label: {
+        Button(action: action) {
             Text(label)
-        })
+        }
     }
 }

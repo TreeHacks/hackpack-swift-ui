@@ -100,13 +100,12 @@ import SwiftUI
 
 struct ButtonView: View {
     var label: String
+    var action: () -> Void = {}
 
     var body: some View {
-        Button(action: {
-            print("Button tapped")
-        }, label: {
+        Button(action: action) {
             Text(label)
-        })
+        }
     }
 }
 ```
@@ -114,7 +113,12 @@ struct ButtonView: View {
 3. Go back to `ContentView.swift`. Add the following code to the `VStack`, under `Text`:
 
 ```swift
-ButtonView(label: "Tap me!")
+ButtonView(
+    label: "Tap me!",
+    action: {
+        print("Button tapped")
+    }
+)
 ```
 
 4. Click the play button on the top left of the screen to run your app in the simulator. You should see a button that says "Tap me!". When you tap the button, you should see "Button tapped" printed in the console (which is at the bottom of the screen).
@@ -132,7 +136,12 @@ NavigationView {
             .imageScale(.large)
             .foregroundStyle(.tint)
         Text("Hello, world!")
-        ButtonView(label: "Tap me!")
+        ButtonView(
+            label: "Tap me!",
+            action: {
+                print("Button tapped")
+            }
+        )
     }
     .padding()
 }
@@ -140,7 +149,7 @@ NavigationView {
 
 2. Let's create a new screen that displays a list of items. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "ListView.swift" as the file name and click "Create". You should see a new file called `ListView.swift` in the folder tree.
 
-3. In `ListView.swift`, add the following shown below. By creating a `var items: [String]` property, we can pass in a list of items to the view. You can read more about arrays [here](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#ID105). 
+3. In `ListView.swift`, add the following shown below. By creating a `var items: [String]` property, we can pass in a list of items to the view. You can read more about arrays [here](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#ID105).
 
 ```swift
 import SwiftUI
@@ -165,7 +174,12 @@ NavigationView {
             .imageScale(.large)
             .foregroundStyle(.tint)
         Text("Hello, world!")
-        ButtonView(label: "Tap me!")
+        ButtonView(
+            label: "Tap me!",
+            action: {
+                print("Button tapped")
+            }
+        )
         NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
             Text("Go to list")
         }
@@ -182,7 +196,7 @@ NavigationView {
 
 1. Let's create a new screen that displays a list of items from an API. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "NetworkingView.swift" as the file name and click "Create". You should see a new file called `NetworkingView.swift` in the folder tree.
 
-2. In `NetworkingView.swift`, let's call the [JSON Placeholder API](https://jsonplaceholder.typicode.com/) to get a list of posts. Add the following shown below. By creating a `@State var posts: [Post]` property, we can store the list of posts in the view. You can read more about state [here](<https://developer.apple.com/documentation/swiftui/state>). 
+2. In `NetworkingView.swift`, let's call the [JSON Placeholder API](https://jsonplaceholder.typicode.com/) to get a list of posts. Add the following shown below. By creating a `@State var posts: [Post]` property, we can store the list of posts in the view. You can read more about state [here](https://developer.apple.com/documentation/swiftui/state).
 
 ```swift
 import SwiftUI
@@ -222,7 +236,7 @@ struct Post: Codable, Identifiable {
 }
 ```
 
-3. A task is a piece of code that runs asynchronously. You can read more about tasks [here](https://docs.swift.org/swift-book/LanguageGuide/Concurrency/ConcurrencyQuickTour.html#ID617). In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](https://developer.apple.com/documentation/swiftui/view/task(id:priority:)).
+3. A task is a piece of code that runs asynchronously. You can read more about tasks [here](https://docs.swift.org/swift-book/LanguageGuide/Concurrency/ConcurrencyQuickTour.html#ID617). In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](<https://developer.apple.com/documentation/swiftui/view/task(id:priority:)>).
 
 4. A `Codable` type is a type that can be encoded and decoded from JSON. You can read more about it [here](https://developer.apple.com/documentation/swift/codable). We create a `Post` struct that conforms to the `Codable` protocol. We also make it conform to the `Identifiable` protocol so that we can use it in a `List`. You can read more about the `Identifiable` protocol [here](https://developer.apple.com/documentation/swiftui/identifiable).
 
@@ -237,7 +251,12 @@ NavigationView {
             .imageScale(.large)
             .foregroundStyle(.tint)
         Text("Hello, world!")
-        ButtonView(label: "Tap me!")
+        ButtonView(
+            label: "Tap me!",
+            action: {
+                print("Button tapped")
+            }
+        )
         NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
             Text("Go to list")
         }
@@ -253,27 +272,93 @@ NavigationView {
 
 ![](/hackpack-assets/network.gif)
 
-### Styling
+### Layout
 
-1. Now that we've gotten some basic SwiftUI down, let's style the app. Go back to `ContentView.swift`. Add the following code to the `VStack`, under `NavigationLink`. You can read more about the `background` modifier [here](<https://developer.apple.com/documentation/swiftui/view/background(_:alignment:)>).
+1. There are 3 main layout views in SwiftUI: `VStack`, `HStack`, and `ZStack`. We've already seen `VStack`, which stacks its children vertically. `HStack` stacks its children horizontally. You can read more about it [here](https://developer.apple.com/documentation/swiftui/hstack). `ZStack` stacks its children on top of each other. You can read more about it [here](https://developer.apple.com/documentation/swiftui/zstack).
+
+2. Let's add the following code to `ContentView.swift` (inside VStack, under the NavigationLink):
 
 ```swift
-NavigationView {
-    VStack {
-        Image(systemName: "globe")
-            .imageScale(.large)
-            .foregroundStyle(.tint)
-        Text("Hello, world!")
-        ButtonView(label: "Tap me!")
-        NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
-            Text("Go to list")
-        }
-        NavigationLink(destination: NetworkingView()) {
-            Text("Go to networking")
+HStack {
+    Image(systemName: "globe")
+        .imageScale(.large)
+        .foregroundStyle(.tint)
+    Text("Hello, world!")
+}
+
+ZStack {
+    Circle().fill(Color.blue).padding(50)
+    Text("Hello, world!")
+}
+```
+
+3. Here's what the app should look like now:
+
+![](/hackpack-assets/layout.png)
+
+4. You can also use the `Spacer` view to add space between views. You can read more about it [here](https://developer.apple.com/documentation/swiftui/spacer). Add a spacer above the `HStack` and below the `NavigationLink`:
+
+```swift
+Spacer()
+```
+
+5. Here's what the app should look like now:
+
+![](/hackpack-assets/spacer.png)
+
+### Styling
+
+1. Now that we've gotten some basic SwiftUI down, let's create a more structured layout with some styling.
+
+2. Replace the contents of `ContentView.swift` with the following:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        NavigationView {
+            VStack {
+                HStack {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                    Text("Hello, world!")
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 10)
+                .padding()
+                ZStack {
+                    Circle().fill(Color.blue).padding(50)
+                    Text("Hello, world!")
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 10)
+                .padding()
+
+                Spacer()
+
+                HStack {
+                    ButtonView(
+                        label: "Tap me!",
+                        action: {
+                            print("Button tapped")
+                        }
+                    )
+                    NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
+                        Text("Go to list")
+                    }
+                    NavigationLink(destination: NetworkingView()) {
+                        Text("Go to networking")
+                    }
+                }
+            }
         }
     }
-    .padding()
-    .background(Color(.systemBackground))
 }
 ```
 

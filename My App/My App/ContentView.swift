@@ -22,6 +22,18 @@ struct ContentView: View {
                 NavigationLink(destination: NetworkingView()) {
                     Text("Go to networking")
                 }
+                Spacer()
+                HStack {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                    Text("Hello, world!")
+                }
+
+                ZStack {
+                    Circle().fill(Color.blue)
+                    Text("Hello, world!")
+                }
             }
             .padding()
         }
