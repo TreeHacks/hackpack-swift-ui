@@ -276,7 +276,7 @@ NavigationStack {
 
 2. You can also use the `Spacer` view to add space between views [(docs)](https://developer.apple.com/documentation/swiftui/spacer).
 
-2. Let's add the following code to `ContentView.swift` (inside VStack, under the NavigationLink):
+3. Let's add the following code to `ContentView.swift` (inside VStack, under the NavigationLink):
 
 ```swift
 Spacer()
@@ -296,7 +296,7 @@ ZStack {
 }
 ```
 
-3. Here's what the app should look like now:
+4. Here's what the app should look like now:
 
 ![](/hackpack-assets/spacer.png)
 
@@ -352,7 +352,7 @@ struct NavigationButtonView<Content: View>: View {
 }
 ```
 
-3. Replace the contents of `ContentView.swift` with the following:
+5. Replace the contents of `ContentView.swift` with the following:
 
 ```swift
 import SwiftUI
@@ -412,9 +412,9 @@ struct ContentView: View {
 }
 ```
 
-4. Notice how for the `destination` argument in `NavigationButtonView`, we have to wrap the view in `AnyView`, because that's what the `destination` argument expects. This is because the `destination` argument is of type `AnyView` [(docs)](https://developer.apple.com/documentation/swiftui/anyview).
+6. Notice how for the `destination` argument in `NavigationButtonView`, we have to wrap the view in `AnyView`, because that's what the `destination` argument expects. This is because the `destination` argument is of type `AnyView` [(docs)](https://developer.apple.com/documentation/swiftui/anyview).
 
-5. Here's what the app should look like now:
+7. Here's what the app should look like now:
 
 ![](/hackpack-assets/styling.png)
 
