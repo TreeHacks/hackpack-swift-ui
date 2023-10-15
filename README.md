@@ -8,21 +8,19 @@ In this hackpack we will cover the basics of SwiftUI and create a simple iOS app
 
 1. Install Xcode from the App Store (https://apps.apple.com/us/app/xcode/id497799835?mt=12)
 
-### Creating a New Project
-
-1. Open Xcode and click "Create New Project"
+2. Open Xcode and click "Create New Project"
 
 ![](/hackpack-assets/new_project_0.png)
 
-2. Select "App" under "iOS"
+3. Select "App" under "iOS"
 
 ![](/hackpack-assets/new_project_1.png)
 
-3. Enter a product name. For the organization identifier, enter your name in reverse domain name notation (e.g. com.apple). Leave the rest of the fields as default and click "Next"
+4. Enter a product name. For the organization identifier, enter your name in reverse domain name notation (e.g. com.apple). Leave the rest of the fields as default and click "Next"
 
 ![](/hackpack-assets/new_project_2.png)
 
-4. Choose a location to save your project and click "Create". You should see a screen as shown below. On the right side of the screen, you should see a preview of your app. This is the default view that Xcode provides for you. You can click the play button on the top left of the screen to run your app in the simulator (or on your device if you have one connected).
+5. Choose a location to save your project and click "Create". You should see a screen as shown below. On the right side of the screen, you should see a preview of your app. This is the default view that Xcode provides for you. You can click the play button on the top left of the screen to run your app in the simulator (or on your device if you have one connected).
 
 ![](/hackpack-assets/new_project_3.png)
 
@@ -66,9 +64,9 @@ struct ContentView: View {
 }
 ```
 
-4. Within the `body` property, you'll see a `VStack`. This is a view that stacks its children vertically. You can read more about it [here](https://developer.apple.com/documentation/swiftui/vstack). Within the `VStack`, you'll see an `Image` and a `Text`. These are both views. You can read more about `Image` [here](https://developer.apple.com/documentation/swiftui/image) and `Text` [here](https://developer.apple.com/documentation/swiftui/text). You'll also see a modifier called `padding`. This is a modifier that adds padding to the view. You can read more about it [here](<https://developer.apple.com/documentation/swiftui/view/padding(_:edges:)>).
+4. Within the `body` property, you'll see a `VStack`. This is a view that stacks its children vertically [(docs)](https://developer.apple.com/documentation/swiftui/vstack). Within the `VStack`, you'll see an `Image` [(docs)](https://developer.apple.com/documentation/swiftui/image) and a `Text` [(docs)](https://developer.apple.com/documentation/swiftui/text). You'll also see a modifier called `padding` [(docs)](<https://developer.apple.com/documentation/swiftui/view/padding(_:edges:)>).
 
-5. A modifier is a method that returns a modified version of the view. You can chain multiple modifiers together to modify the view. For example, you can add a background color to the view by adding a modifier called `background` to the end of the view. You can read more about it [here](<https://developer.apple.com/documentation/swiftui/view/background(_:alignment:)>). The order of the modifiers matters. If you add the `background` modifier before the `padding` modifier, the background color will only be applied to the view itself, not the padding. If you add the `background` modifier after the `padding` modifier, the background color will be applied to the view and the padding.
+5. A modifier is a method that returns a modified version of the view. They should be indented under the view they modify. You can chain multiple modifiers together to modify the view. For example, you can add a background color to the view by adding a modifier called `background` to the end of the view [(docs)](<https://developer.apple.com/documentation/swiftui/view/background(_:alignment:)>). The order of the modifiers matters. If you add the `background` modifier before the `padding` modifier, the background color will only be applied to the view itself, not the padding. If you add the `background` modifier after the `padding` modifier, the background color will be applied to the view and the padding.
 
 ```swift
 import SwiftUI
@@ -81,8 +79,8 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
-        .padding()
-        .background(Color.red)
+            .padding()
+            .background(Color.red)
     }
 }
 ```
@@ -127,7 +125,7 @@ ButtonView(
 
 ### Navigation
 
-1. Navigation is a way to navigate between different views. Let's add a navigation view to the app. Go back to `ContentView.swift`. Wrap the `VStack` in a `NavigationView`. You can read more about it [here](https://developer.apple.com/documentation/swiftui/navigationview).
+1. Navigation is a way to navigate between different views. Let's add a navigation view to the app. Go back to `ContentView.swift`. Wrap the `VStack` in a `NavigationView`[(docs)](https://developer.apple.com/documentation/swiftui/navigationview).
 
 ```swift
 NavigationView {
@@ -196,7 +194,7 @@ NavigationView {
 
 1. Let's create a new screen that displays a list of items from an API. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "NetworkingView.swift" as the file name and click "Create". You should see a new file called `NetworkingView.swift` in the folder tree.
 
-2. In `NetworkingView.swift`, let's call the [JSON Placeholder API](https://jsonplaceholder.typicode.com/) to get a list of posts. Add the following shown below. By creating a `@State var posts: [Post]` property, we can store the list of posts in the view. You can read more about state [here](https://developer.apple.com/documentation/swiftui/state).
+2. In `NetworkingView.swift`, let's call the [JSON Placeholder API](https://jsonplaceholder.typicode.com/) to get a list of posts. Add the following shown below. By creating a `@State var posts: [Post]` property, we can store the list of posts in the view. You can read more about states [here](https://developer.apple.com/documentation/swiftui/state).
 
 ```swift
 import SwiftUI
@@ -236,13 +234,13 @@ struct Post: Codable, Identifiable {
 }
 ```
 
-3. A task is a piece of code that runs asynchronously. You can read more about tasks [here](https://docs.swift.org/swift-book/LanguageGuide/Concurrency/ConcurrencyQuickTour.html#ID617). In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](<https://developer.apple.com/documentation/swiftui/view/task(id:priority:)>).
+3. A task is a piece of code that runs asynchronously [(docs)](https://docs.swift.org/swift-book/LanguageGuide/Concurrency/ConcurrencyQuickTour.html#ID617). In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](<https://developer.apple.com/documentation/swiftui/view/task(id:priority:)>).
 
-4. A `Codable` type is a type that can be encoded and decoded from JSON. You can read more about it [here](https://developer.apple.com/documentation/swift/codable). We create a `Post` struct that conforms to the `Codable` protocol. We also make it conform to the `Identifiable` protocol so that we can use it in a `List`. You can read more about the `Identifiable` protocol [here](https://developer.apple.com/documentation/swiftui/identifiable).
+4. A `Codable` type is a type that can be encoded and decoded from JSON [(docs)](https://developer.apple.com/documentation/swift/codable). We create a `Post` struct that conforms to the `Codable` protocol. We also make it conform to the `Identifiable` protocol so that we can use it in a `List`.
 
-5. An `Identifiable` type is a type that has a stable identity. You can read more about it [here](https://developer.apple.com/documentation/swiftui/identifiable). We make the `id` property of the `Post` struct the stable identity.
+5. An `Identifiable` type is a type that has a stable identity [(docs)](https://developer.apple.com/documentation/swiftui/identifiable). We make the `id` property of the `Post` struct the stable identity.
 
-6. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `NavigationLink`. You can read more about it [here](https://developer.apple.com/documentation/swiftui/navigationlink).
+6. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `NavigationLink` [(docs)](https://developer.apple.com/documentation/swiftui/navigationlink).
 
 ```swift
 NavigationView {
@@ -296,7 +294,7 @@ ZStack {
 
 ![](/hackpack-assets/layout.png)
 
-4. You can also use the `Spacer` view to add space between views. You can read more about it [here](https://developer.apple.com/documentation/swiftui/spacer). Add a spacer above the `HStack` and below the `NavigationLink`:
+4. You can also use the `Spacer` view to add space between views [(docs)](https://developer.apple.com/documentation/swiftui/spacer). Add a spacer above the `HStack` and below the `NavigationLink`:
 
 ```swift
 Spacer()
@@ -310,7 +308,55 @@ Spacer()
 
 1. Now that we've gotten some basic SwiftUI down, let's create a more structured layout with some styling.
 
-2. Replace the contents of `ContentView.swift` with the following:
+2. First, let's make the buttons look more like clickable buttons. Go to `ButtonView.swift` and replace the contents of the file with the following:
+
+```swift
+import SwiftUI
+
+struct ButtonView<Content: View>: View {
+    var label: Content
+    var action: () -> Void = {}
+
+    var body: some View {
+        Button(action: action) {
+            label
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+    }
+}
+```
+
+3. By making the `label` property a generic type, we can pass in any view as the label. However, we also have to change the `ButtonView` header to `struct ButtonView<Content: View>: View {`, which means that the struct `ButtonView` has a generic type paramter `Content` that conforms to the `View` protocol. You can read more about generics [here](https://docs.swift.org/swift-book/LanguageGuide/Generics.html).
+
+4. Let's make navigation links look more like buttons. Make a new file called `NavigationButtonView.swift` and add the following code:
+
+```swift
+import SwiftUI
+
+struct NavigationButtonView<Content: View>: View {
+    var label: Content
+    var destination: AnyView
+
+    var body: some View {
+        NavigationLink(destination: destination) {
+            label
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+    }
+}
+```
+
+3. Replace the contents of `ContentView.swift` with the following:
 
 ```swift
 import SwiftUI
@@ -325,42 +371,52 @@ struct ContentView: View {
                         .foregroundStyle(.tint)
                     Text("Hello, world!")
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                .padding()
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+                    .padding()
+                    
                 ZStack {
                     Circle().fill(Color.blue).padding(50)
                     Text("Hello, world!")
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                .padding()
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+                    .padding()
 
                 Spacer()
 
                 HStack {
                     ButtonView(
-                        label: "Tap me!",
+                        label: Text("Tap me!")
                         action: {
                             print("Button tapped")
                         }
                     )
-                    NavigationLink(destination: ListView(items: ["Item 1", "Item 2", "Item 3"])) {
-                        Text("Go to list")
-                    }
-                    NavigationLink(destination: NetworkingView()) {
-                        Text("Go to networking")
-                    }
+
+                    NavigationButtonView(
+                        label: Text("Go to List View"),
+                        destination: AnyView(ListView(items: ["Item 1", "Item 2", "Item 3"]))
+                    )
+                    
+                    NavigationButtonView(
+                        label: Text("Go to Network"),
+                        destination: AnyView(NetworkingView())
+                    )
                 }
+                    .padding(.horizontal)
             }
         }
     }
 }
 ```
+
+4. Here's what the app should look like now:
+
+![](/hackpack-assets/styling.png)
 
 # Congratulations! 🎉
 

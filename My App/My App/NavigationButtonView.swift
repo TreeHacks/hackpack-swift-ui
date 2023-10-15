@@ -1,5 +1,5 @@
 //
-//  ButtonView.swift
+//  NavigationButtonView.swift
 //  My App
 //
 //  Created by Irfan Nafi on 10/15/23.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ButtonView<Content: View>: View {
+struct NavigationButtonView<Content: View>: View {
     var label: Content
-    var action: () -> Void = {}
+    var destination: AnyView
     
     var body: some View {
-        Button(action: action) {
+        NavigationLink(destination: destination) {
             label
                 .font(.headline)
                 .foregroundColor(.white)
