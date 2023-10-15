@@ -414,7 +414,9 @@ struct ContentView: View {
 }
 ```
 
-4. Here's what the app should look like now:
+4. Notice how for the `destination` argument in `NavigationButtonView`, we have to wrap the view in `AnyView`, because that's what the `destination` argument expects. This is because the `destination` argument is of type `AnyView` [(docs)](https://developer.apple.com/documentation/swiftui/anyview).
+
+5. Here's what the app should look like now:
 
 ![](/hackpack-assets/styling.png)
 
