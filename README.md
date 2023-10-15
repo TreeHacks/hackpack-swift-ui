@@ -28,11 +28,11 @@ In this hackpack we will cover the basics of SwiftUI and create a simple iOS app
 
 ### Overview of Xcode
 
-1. On the left side of the screen, you should see a file navigator. This is where you can view all of the files in your project and also create new files/folders. Above the folder tree, you should see a row of buttons that show you different properties of the project. For example, you can see all the breakpoints or monitor the memory usage of your app. 
+1. On the left side of the screen, you should see a file navigator. This is where you can view all of the files in your project and also create new files/folders. Above the folder tree, you should see a row of buttons that show you different properties of the project. For example, you can see all the breakpoints or monitor the memory usage of your app.
 
 ![](/hackpack-assets/folder_tree.png) ![](/hackpack-assets/performance.png)
 
-2. At the very top, you should see the current device Xcode would run your app on. You can click this to change the device. 
+2. At the very top, you should see the current device Xcode would run your app on. You can click this to change the device.
 
 ![](/hackpack-assets/device.png)
 
@@ -46,6 +46,78 @@ In this hackpack we will cover the basics of SwiftUI and create a simple iOS app
 
 3. Let's go back to `ContentView.swift`. You'll notice that it's a struct that conforms to the `View` protocol. This means that it's a view. You can see the code for the view on the right side of the screen. The `body` property is a computed property that returns a `some View`. This means that the type of the view is unknown, but it conforms to the `View` protocol. The `some` keyword is used to hide the type of the view. You can read more about opaque return types [here](https://docs.swift.org/swift-book/LanguageGuide/OpaqueTypes.html).
 
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("Hello, world!")
+        }
+        .padding()
+    }
+}
+
+#Preview {
+    ContentView()
+}
+```
+
+4. Within the `body` property, you'll see a `VStack`. This is a view that stacks its children vertically. You can read more about it [here](https://developer.apple.com/documentation/swiftui/vstack). Within the `VStack`, you'll see an `Image` and a `Text`. These are both views. You can read more about `Image` [here](https://developer.apple.com/documentation/swiftui/image) and `Text` [here](https://developer.apple.com/documentation/swiftui/text). You'll also see a modifier called `padding`. This is a modifier that adds padding to the view. You can read more about it [here](<https://developer.apple.com/documentation/swiftui/view/padding(_:edges:)>).
+
+5. A modifier is a method that returns a modified version of the view. You can chain multiple modifiers together to modify the view. For example, you can add a background color to the view by adding a modifier called `background` to the end of the view. You can read more about it [here](<https://developer.apple.com/documentation/swiftui/view/background(_:alignment:)>). The order of the modifiers matters. If you add the `background` modifier before the `padding` modifier, the background color will only be applied to the view itself, not the padding. If you add the `background` modifier after the `padding` modifier, the background color will be applied to the view and the padding.
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("Hello, world!")
+        }
+        .padding()
+        .background(Color.red)
+    }
+}
+```
+
+6. At the very bottom of the file, there's a `#Preview` struct (albeit with special syntax) that conforms to the `PreviewProvider` protocol. This struct is what creates the preview on the right side of the screen.
+
+### Creating a New View
+
+1. Let's add a new view to the project that creates a button. Right click on the folder tree and click "New File...". Select "Swift File" and click "Next". Enter "ButtonView.swift" as the file name and click "Create". You should see a new file called `ButtonView.swift` in the folder tree.
+
+2. In `ButtonView.swift`, add the following code:
+
+```swift
+import SwiftUI
+
+struct ButtonView: View {
+    var body: some View {
+        Button(action: {
+            print("Button tapped")
+        }, label: {
+            Text("Tap me!")
+        })
+    }
+}
+```
+
+3. Go back to `ContentView.swift`. Add the following code to the `VStack`, under `Text`:
+
+```swift
+ButtonView()
+```
+
+4. Click the play button on the top left of the screen to run your app in the simulator. You should see a button that says "Tap me!". When you tap the button, you should see "Button tapped" printed in the console (which is at the bottom of the screen).
+
+![](/hackpack-assets/console.png)
 
 ### Uploading to the App Store
 
