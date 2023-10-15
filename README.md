@@ -272,11 +272,15 @@ NavigationStack {
 
 ### Layout
 
-1. There are 3 main layout views in SwiftUI: `VStack`, `HStack`, and `ZStack`. We've already seen `VStack`, which stacks its children vertically. `HStack` stacks its children horizontally. You can read more about it [here](https://developer.apple.com/documentation/swiftui/hstack). `ZStack` stacks its children on top of each other. You can read more about it [here](https://developer.apple.com/documentation/swiftui/zstack).
+1. There are 3 main layout views in SwiftUI: `VStack`, `HStack`, and `ZStack`. We've already seen `VStack`, which stacks its children vertically. `HStack` stacks its children horizontally [(docs)](https://developer.apple.com/documentation/swiftui/hstack). `ZStack` stacks its children on top of each other [(docs)](https://developer.apple.com/documentation/swiftui/zstack).
+
+2. You can also use the `Spacer` view to add space between views [(docs)](https://developer.apple.com/documentation/swiftui/spacer).
 
 2. Let's add the following code to `ContentView.swift` (inside VStack, under the NavigationLink):
 
 ```swift
+Spacer()
+
 HStack {
     Image(systemName: "globe")
         .imageScale(.large)
@@ -293,16 +297,6 @@ ZStack {
 ```
 
 3. Here's what the app should look like now:
-
-![](/hackpack-assets/layout.png)
-
-4. You can also use the `Spacer` view to add space between views [(docs)](https://developer.apple.com/documentation/swiftui/spacer). Add a spacer above the `HStack` and below the `NavigationLink`:
-
-```swift
-Spacer()
-```
-
-5. Here's what the app should look like now:
 
 ![](/hackpack-assets/spacer.png)
 
