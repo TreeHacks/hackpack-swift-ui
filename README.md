@@ -64,9 +64,9 @@ struct ContentView: View {
 }
 ```
 
-4. Within the `body` property, you'll see a `VStack`. This is a view that stacks its children vertically [(docs)](https://developer.apple.com/documentation/swiftui/vstack). Within the `VStack`, you'll see an `Image` [(docs)](https://developer.apple.com/documentation/swiftui/image) and a `Text` [(docs)](https://developer.apple.com/documentation/swiftui/text). You'll also see a modifier called `padding` [(docs)](<https://developer.apple.com/documentation/swiftui/view/padding(_:edges:)>).
+4. Within the `body` property, you'll see a `VStack`. This is a view that stacks its children vertically [(docs)](https://developer.apple.com/documentation/swiftui/vstack). Within the `VStack`, you'll see an `Image` [(docs)](https://developer.apple.com/documentation/swiftui/image) and a `Text` [(docs)](https://developer.apple.com/documentation/swiftui/text). You'll also see a modifier called `padding` [(docs)](<https://developer.apple.com/documentation/swiftui/view/padding(_:_:)>).
 
-5. A modifier is a method that returns a modified version of the view. They should be indented under the view they modify. You can chain multiple modifiers together to modify the view. For example, you can add a background color to the view by adding a modifier called `background` to the end of the view [(docs)](<https://developer.apple.com/documentation/swiftui/view/background(_:alignment:)>). The order of the modifiers matters. If you add the `background` modifier before the `padding` modifier, the background color will only be applied to the view itself, not the padding. If you add the `background` modifier after the `padding` modifier, the background color will be applied to the view and the padding.
+5. A modifier is a method that returns a modified version of the view. They should be indented under the view they modify. You can chain multiple modifiers together to modify the view. For example, you can add a background color to the view by adding a modifier called `background` to the end of the view [(docs)](<https://developer.apple.com/documentation/swiftui/view/background(alignment:content:)>). The order of the modifiers matters. If you add the `background` modifier before the `padding` modifier, the background color will only be applied to the view itself, not the padding. If you add the `background` modifier after the `padding` modifier, the background color will be applied to the view and the padding.
 
 ```swift
 import SwiftUI
@@ -125,10 +125,10 @@ ButtonView(
 
 ### Navigation
 
-1. Navigation is a way to navigate between different views. Let's add a navigation view to the app. Go back to `ContentView.swift`. Wrap the `VStack` in a `NavigationView`[(docs)](https://developer.apple.com/documentation/swiftui/navigationview).
+1. Navigation is a way to navigate between different views. Let's add a navigation view to the app. Go back to `ContentView.swift`. Wrap the `VStack` in a `NavigationStack`[(docs)](https://developer.apple.com/documentation/swiftui/navigationstack).
 
 ```swift
-NavigationView {
+NavigationStack {
     VStack {
         Image(systemName: "globe")
             .imageScale(.large)
@@ -163,10 +163,10 @@ struct ListView: View {
 }
 ```
 
-4. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `ButtonView`. You can read more about it [here](https://developer.apple.com/documentation/swiftui/navigationlink).
+4. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `ButtonView`. You can read more about navigation links [here](https://developer.apple.com/documentation/swiftui/navigationlink).
 
 ```swift
-NavigationView {
+NavigationStack {
     VStack {
         Image(systemName: "globe")
             .imageScale(.large)
@@ -234,16 +234,16 @@ struct Post: Codable, Identifiable {
 }
 ```
 
-3. A task is a piece of code that runs asynchronously [(docs)](https://docs.swift.org/swift-book/LanguageGuide/Concurrency/ConcurrencyQuickTour.html#ID617). In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](<https://developer.apple.com/documentation/swiftui/view/task(id:priority:)>).
+3. A task is a piece of code that runs asynchronously. In the `task` modifier, we call the `fetchPosts` function to get a list of posts. We then set the `posts` property to the list of posts. You can read more about the `task` modifier [here](<https://developer.apple.com/documentation/swiftui/view/task(priority:_:)>).
 
 4. A `Codable` type is a type that can be encoded and decoded from JSON [(docs)](https://developer.apple.com/documentation/swift/codable). We create a `Post` struct that conforms to the `Codable` protocol. We also make it conform to the `Identifiable` protocol so that we can use it in a `List`.
 
 5. An `Identifiable` type is a type that has a stable identity [(docs)](https://developer.apple.com/documentation/swiftui/identifiable). We make the `id` property of the `Post` struct the stable identity.
 
-6. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `NavigationLink` [(docs)](https://developer.apple.com/documentation/swiftui/navigationlink).
+6. Go back to `ContentView.swift`. Add a navigation link to the `VStack`, under `NavigationLink`.
 
 ```swift
-NavigationView {
+NavigationStack {
     VStack {
         Image(systemName: "globe")
             .imageScale(.large)
@@ -363,7 +363,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HStack {
                     Image(systemName: "globe")
